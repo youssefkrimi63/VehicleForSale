@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa; /* Background color */
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        form {
+            max-width: 600px; /* Adjust the width as needed */
+            margin: 0 auto; /* Center the form horizontally */
+            text-align: left; /* Align form elements to the left */
+            background-color: #fff; /* Form background color */
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add shadow for the form */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        textarea,
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+    </style>
+    <title>Edit Article</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>Edit Article</h1>
+        <div>
+            <a href="/dashboard" class="btn btn-primary">Dashboard</a>
+            <a href="/logout" class="btn btn-danger">Logout</a>
+        </div>
+    </header>
+
+    <main>
+        {%for message in get_flashed_messages(category_filter=["order"])%}
+        <p class="text-danger">{{message}}</p>
+        {%endfor%}
+        <form action="/order/edit/{{ order.id }}" method="post">
+            <input type="hidden" name="user_id" value="{{session['user_id']}}">
+
+            <div class="form-group">
+                <label for="vehicle_type">Vehicle Type: </label>
+                <textarea name="vehicle_type">{{order.vehicle_type}}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="years">Years: </label>
+                <textarea name="years">{{order.years}}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price: </label>
+                <input type="text" name="price" value="{{order.price}}">
+            </div>
+
+            <div class="form-group">
+                <label for="marke">Marke: </label>
+                <textarea name="marke">{{order.marke}}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="model">Model: </label>
+                <textarea name="model">{{order.model}}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description: </label>
+                <textarea name="description">{{order.description}}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="Img">Image: </label>
+                <textarea name="Img">{{order.Img}}</textarea>
+            </div>
+
+            <div>
+                <a href="/dashboard" class="btn btn-danger">Cancel</a>
+                <button type="submit" class="btn btn-warning">Submit</button>
+            </div>
+        </form>
+    </main>
+
+</body>
+
+</html>

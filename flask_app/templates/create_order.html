@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Order</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <style>
+        /* Navbar Style */
+        .navbar {
+            background-color: #3498db; /* Change navbar background color */
+            padding: 1rem;
+        }
+
+        .navbar-brand {
+            color: #fff; /* Change navbar brand text color */
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff; /* Change navbar links text color */
+            font-size: 1.2rem;
+            margin-right: 1rem;
+        }
+
+        /* Form Style */
+        .form-group {
+            margin-bottom: 1.5rem; /* Increase space between form fields */
+        }
+
+        /* Button Style */
+        .btn-primary {
+            background-color: #3498db; /* Change primary button background color */
+            border-color: #3498db; /* Change primary button border color */
+        }
+
+        .btn-warning {
+            background-color: #f39c12; /* Change warning button background color */
+            border-color: #f39c12; /* Change warning button border color */
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Marketplace:AddVehicle </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    
+                    <a class="nav-link active" aria-current="page" href="/dashboard">dashboard</a>
+                    <a class="nav-link" href="/logout">LOGOUT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        {% for message in get_flashed_messages(category_filter=["order"]) %}
+        <p class="text-danger">{{ message }}</p>
+        {% endfor %}
+        <form action="/orders/create" method="post">
+            <input type="hidden" name="user_id" value="{{ session['user_id'] }}">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="vehicle_type">vehicle_type:</label>
+                        <input type="text" name="vehicle_type" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="years">years:</label>
+                        <input type="text" name="years" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="marke">marke:</label>
+                        <input type="text" name="marke" class="form-control">
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="description">description:</label>
+                        <input type="text" name="description" class="form-control">
+                    </div>
+                   
+                    <div class="form-group">
+                        <label for="model">model:</label>
+                        <input type="text" name="model" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="Img">Img:</label>
+                        <input type="text" name="Img" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price:</label>
+                        <input type="text" name="price" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-6 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary me-2">Cancel</button>
+                    <button type="submit" class="btn btn-warning">Submit</button>
+                </div>
+            </div>
+        </form>
+    </main>
+
+    <!-- Add Bootstrap JS (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
