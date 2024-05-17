@@ -34,13 +34,8 @@ def register():
 
     return redirect('/dashboard')
 
-@app.route('/dashboard')
-def dashboard():
-    if 'user_id' not in session:#if he has not an id redirect to the register page
-        return redirect('/')
-    all_orders = Order.get_orders()
-    user= User.get_by_id({'id': session['user_id']})
-    return render_template('dashboard.html',user=user,all_orders=all_orders)
+
+
 
 
 
